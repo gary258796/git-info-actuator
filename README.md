@@ -1,5 +1,6 @@
 # git-info-actuator
 
+* [Quick Go Through](#quick-go-through)
 * [Overall](#overall)
 * [Add Dependencies](#add-dependencies-into-pomxml)
 * [Add Plugin](#add-plugin-into-pomxml)
@@ -7,6 +8,21 @@
 * [Expose using SpringBoot Actuator](#expose-using-springboot-actuator)
 * [Expose using Custom EndPoint](#expose-using-custom-endpoint)
 * [Expose using Custom RestControllerEndPoint](#expose-using-custom-restcontrollerendpoint)
+
+
+## Quick Go Through
+
+1. Download and launch SpringBoot application with 8080 port.
+2. All endpoints we offer now: [http://localhost:8080/actuator](http://localhost:8080/actuator)
+3. /info endpoint: [http://localhost:8080/actuator/info](http://localhost:8080/actuator/info)
+4. Custom /git-info endpoint
+   * [http://localhost:8080/actuator/git-info](http://localhost:8080/actuator/git-info)
+   * [http://localhost:8080/actuator/git-info/true](http://localhost:8080/actuator/git-info/true) -> Which show full detail infos from git commit.
+5. Custom /defined-info endpoint
+   * [http://localhost:8080/actuator/defined-info/git](http://localhost:8080/actuator/defined-info/git)
+   * [http://localhost:8080/actuator/defined-info/git/detail](http://localhost:8080/actuator/defined-info/git/detail) -> Which show full detail infos from git commit.
+6. Custom /custom-info endpoint
+   * [http://localhost:8080/actuator/custom-info/git/detail](http://localhost:8080/actuator/custom-info/git/detail) -> Which show self-selected detail infos from git commit.
 
 ## Overall
 
@@ -179,8 +195,9 @@ Add a [class annotate with @RestControllerEndPoint](https://github.com/gary25879
 > Remember to let SpringBoot know git.properties in order to inject value by @Value.<br>
 > No matter we choose to achieve by using @PropertySource, config PropertySourcesPlaceholderConfigurer or any ways mentioned in this [article](https://stackabuse.com/how-to-access-property-file-values-in-spring-boot/). 
 
-Reference:
-[//]: # (https://www.jianshu.com/p/1fe9d5c1d145)
-[//]: # (https://www.javadevjournal.com/spring-boot/spring-boot-actuator-custom-endpoint/)
-[//]: # (https://medium.com/@jamiekee94/enhancing-spring-boot-actuator-with-custom-endpoints-d6343fbaa1ca#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImVkMzZjMjU3YzQ3ZWJhYmI0N2I0NTY4MjhhODU4YWE1ZmNkYTEyZGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2NjQ5NDU2MjgsImF1ZCI6IjIxNjI5NjAzNTgzNC1rMWs2cWUwNjBzMnRwMmEyamFtNGxqZGNtczAwc3R0Zy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwNzg1ODEyNDg2OTA4NTEyNzU4NCIsImVtYWlsIjoiZ2FyeTI1ODc5NkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXpwIjoiMjE2Mjk2MDM1ODM0LWsxazZxZTA2MHMydHAyYTJqYW00bGpkY21zMDBzdHRnLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwibmFtZSI6IkdhcnkgTGlhbyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BTG01d3UyMmYzdmV2cUFGWURpREM3Um9GNU1oZ3lkSUN1VDJjbG15UTFnbD1zOTYtYyIsImdpdmVuX25hbWUiOiJHYXJ5IiwiZmFtaWx5X25hbWUiOiJMaWFvIiwiaWF0IjoxNjY0OTQ1OTI4LCJleHAiOjE2NjQ5NDk1MjgsImp0aSI6IjFmYTk3NTlkOGY0MjI4MGQwOTcyOTY3MDg5MTAxM2Q5NzM1NjgzZDUifQ.Ue0OtEf64oIx6xO0R4fRCX6u5hZsidLLLif2YYAwcRfZ6J084t8MMUDzaJKRYy5uIwbsjhvuk9TtjeqfKSGnnntFBD_MZlZe3PC7XE3feOQwXbUbt7e5z_1dFVwRW_1Ut-KZRGfNhQS8DM90wfd8PHA0OKszlJp00fVUzi2y85AActk3LT556nGtAWWVV2p0DTEqn3MepKyMu8C-Dp4lt6HJrEDbK2_oAZQJqcw5kOWRzg1tz_Sep0kCo1MEGRuEaiwnl-5wu5XDI6XndrOjE6IHV72xqXsi9M38AWzWcgc-YVtnE3hEzuXktvU_Asn3TzG1wkERCtpOA0gbZdwaPQ)
-[//]: # (https://www.baeldung.com/spring-git-information)
+## Reference
+1. [聊聊如何验证线上的版本是符合预期的版本](https://www.jianshu.com/p/1fe9d5c1d145)
+2. [Custom Endpoint in Spring Boot Actuator](https://www.javadevjournal.com/spring-boot/spring-boot-actuator-custom-endpoint/)
+3. [Enhancing Spring Boot Actuator with Custom Endpoints](https://medium.com/@jamiekee94/enhancing-spring-boot-actuator-with-custom-endpoints-d6343fbaa1ca#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImVkMzZjMjU3YzQ3ZWJhYmI0N2I0NTY4MjhhODU4YWE1ZmNkYTEyZGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2NjQ5NDU2MjgsImF1ZCI6IjIxNjI5NjAzNTgzNC1rMWs2cWUwNjBzMnRwMmEyamFtNGxqZGNtczAwc3R0Zy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwNzg1ODEyNDg2OTA4NTEyNzU4NCIsImVtYWlsIjoiZ2FyeTI1ODc5NkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXpwIjoiMjE2Mjk2MDM1ODM0LWsxazZxZTA2MHMydHAyYTJqYW00bGpkY21zMDBzdHRnLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwibmFtZSI6IkdhcnkgTGlhbyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BTG01d3UyMmYzdmV2cUFGWURpREM3Um9GNU1oZ3lkSUN1VDJjbG15UTFnbD1zOTYtYyIsImdpdmVuX25hbWUiOiJHYXJ5IiwiZmFtaWx5X25hbWUiOiJMaWFvIiwiaWF0IjoxNjY0OTQ1OTI4LCJleHAiOjE2NjQ5NDk1MjgsImp0aSI6IjFmYTk3NTlkOGY0MjI4MGQwOTcyOTY3MDg5MTAxM2Q5NzM1NjgzZDUifQ.Ue0OtEf64oIx6xO0R4fRCX6u5hZsidLLLif2YYAwcRfZ6J084t8MMUDzaJKRYy5uIwbsjhvuk9TtjeqfKSGnnntFBD_MZlZe3PC7XE3feOQwXbUbt7e5z_1dFVwRW_1Ut-KZRGfNhQS8DM90wfd8PHA0OKszlJp00fVUzi2y85AActk3LT556nGtAWWVV2p0DTEqn3MepKyMu8C-Dp4lt6HJrEDbK2_oAZQJqcw5kOWRzg1tz_Sep0kCo1MEGRuEaiwnl-5wu5XDI6XndrOjE6IHV72xqXsi9M38AWzWcgc-YVtnE3hEzuXktvU_Asn3TzG1wkERCtpOA0gbZdwaPQ)
+4. [Injecting Git Information Into Spring](https://www.baeldung.com/spring-git-information)
+
