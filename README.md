@@ -191,14 +191,20 @@ Say we don't want infos that prefix with 'git.build', we set configuration as
 ### Expose using Custom RestControllerEndPoint
 
 Add a [class annotate with @RestControllerEndPoint](https://github.com/gary258796/git-info-actuator/blob/main/src/main/java/gary/framework/gitinfoactuator/endpoint/GitRestControllerEndPoint.java) and define endpoints.<br>
-I personally prefer using RestControllerEndPoint because I can set up endpoints with all familiar annotation when we're developing apis, such as @GetMapping, @PostMapping, @RequestBody...etc.
+I personally prefer using RestControllerEndPoint because I can set up endpoints with all familiar annotation when we're developing apis, such as @GetMapping, @PostMapping, @RequestBody...etc.<br>
+Access this endpoint by:
+* [http://localhost:8080/actuator/defined-info/git](http://localhost:8080/actuator/defined-info/git)
+* [http://localhost:8080/actuator/defined-info/git/detail](http://localhost:8080/actuator/defined-info/git/detail) -> Which show full detail infos from git commit.
 
 ### Expose using Custom RestControllerEndPoint with self-selected properties
 
 Add a [class annotate with @RestControllerEndPoint](https://github.com/gary258796/git-info-actuator/blob/main/src/main/java/gary/framework/gitinfoactuator/endpoint/GitCustomRestControllerEndPoint.java) and inject all properties we want using @Value annotation.
 > :warning: <br>
 > Remember to let SpringBoot know git.properties in order to inject value by @Value.<br>
-> No matter we choose to achieve by using @PropertySource, config PropertySourcesPlaceholderConfigurer or any ways mentioned in this [article](https://stackabuse.com/how-to-access-property-file-values-in-spring-boot/). 
+> No matter we choose to achieve by using @PropertySource, config PropertySourcesPlaceholderConfigurer or any ways mentioned in this [article](https://stackabuse.com/how-to-access-property-file-values-in-spring-boot/).
+
+Access this endpoint by:
+* [http://localhost:8080/actuator/custom-info/git/detail](http://localhost:8080/actuator/custom-info/git/detail) -> Which show self-selected detail infos from git commit.
 
 ## Reference
 1. [聊聊如何验证线上的版本是符合预期的版本](https://www.jianshu.com/p/1fe9d5c1d145)
