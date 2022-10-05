@@ -3,10 +3,12 @@ package gary.framework.gitinfoactuator.endpoint;
 import gary.framework.gitinfoactuator.model.GitInfo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEndpoint;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Component
+@ConditionalOnProperty(name = "project.show.git.version", havingValue = "true")
 @RestControllerEndpoint(id = "custom-info")
 public class GitCustomRestControllerEndPoint {
 
