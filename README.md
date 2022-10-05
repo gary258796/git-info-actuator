@@ -1,7 +1,7 @@
 # git-info-actuator
 
-* [Quick Go Through](#quick-go-through)
 * [Overall](#overall)
+* [Quick Go Through](#quick-go-through)
 * [Add Dependencies](#add-dependencies-into-pomxml)
 * [Add Plugin](#add-plugin-into-pomxml)
 * [Run maven command](#run-maven-command)
@@ -9,6 +9,21 @@
 * [Expose using Custom EndPoint](#expose-using-custom-endpoint)
 * [Expose using Custom RestControllerEndPoint](#expose-using-custom-restcontrollerendpoint)
 
+
+## Overall
+
+* From doc from [Spring.io](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.build.generate-git-info), it tells what plugin we should use to get git information for us, including Maven and Gradle.
+* Also, from doc from [Spring.io](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.info.git-commit-information)
+  > 1. Plugin will generate **git.properties** file automatically.<br>
+  > 2. A **GitProperties** bean is autoconfigured if a git.properties file is available at the root of the classpath
+  > 3. If a **GitProperties** bean is available, you can use the info endpoint to expose these properties.
+* So, we will first expose git infos into /info endpoint provided by SpringBoot actuator.
+* And if this isn't enough, we customize an /endpoint specific for showing git-infos.
+* Secure our endpoint if it contains some info we wouldn't want anybody to see.
+  * Option 1: Secure your endpoint with [Spring Security](https://www.amitph.com/how-to-secure-spring-boot-actuator-endpoints/)
+* Only expose endpoint within specific environment
+  * Option 1: By setting properties with different values in different environment, and use [@ConditionalOnProperty](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/autoconfigure/condition/ConditionalOnProperty.html) to decide. <br> Check Class [GitCustomRestControllerEndPoint](https://github.com/gary258796/git-info-actuator/blob/main/src/main/java/gary/framework/gitinfoactuator/endpoint/GitCustomRestControllerEndPoint.java)
+  
 
 ## Quick Go Through
 
@@ -23,16 +38,6 @@
    * [http://localhost:8080/actuator/defined-info/git/detail](http://localhost:8080/actuator/defined-info/git/detail) -> Which show full detail infos from git commit.
 6. Custom /custom-info endpoint
    * [http://localhost:8080/actuator/custom-info/git/detail](http://localhost:8080/actuator/custom-info/git/detail) -> Which show self-selected detail infos from git commit.
-
-## Overall
-
-* From doc from [Spring.io](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.build.generate-git-info), it tells what plugin we should use to get git information for us, including Maven and Gradle.
-* Also, from doc from [Spring.io](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.info.git-commit-information)
-  > 1. Plugin will generate **git.properties** file automatically.<br>
-  > 2. A **GitProperties** bean is autoconfigured if a git.properties file is available at the root of the classpath
-  > 3. If a **GitProperties** bean is available, you can use the info endpoint to expose these properties.
-* So, we will first expose git infos into /info endpoint provided by SpringBoot actuator.
-* And if this isn't enough, we customize an /endpoint specific for showing git-infos.
 
 
 ## Add Dependencies into pom.xml
