@@ -24,6 +24,7 @@ public class GitRestControllerEndPoint {
 
     @GetMapping("/git")
     public Object gitInfo() {
+
         if (ObjectUtils.isEmpty(gitProperties)) {
             return null;
         }
