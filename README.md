@@ -206,6 +206,9 @@ Add a [class annotate with @RestControllerEndPoint](https://github.com/gary25879
 Access this endpoint by:
 * [http://localhost:8080/actuator/custom-info/git/detail](http://localhost:8080/actuator/custom-info/git/detail) -> Which show self-selected detail infos from git commit.
 
+### Notice
+1. Tracking [issue](https://github.com/git-commit-id/git-commit-id-maven-plugin/issues/590) for personal use of chinese commit message.
+
 ## Reference
 1. [聊聊如何验证线上的版本是符合预期的版本](https://www.jianshu.com/p/1fe9d5c1d145)
 2. [Custom Endpoint in Spring Boot Actuator](https://www.javadevjournal.com/spring-boot/spring-boot-actuator-custom-endpoint/)
